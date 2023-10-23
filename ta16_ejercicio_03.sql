@@ -138,14 +138,14 @@ WHERE
 
 SET @valor_medio = (SELECT AVG(VALOR) FROM cajas);
 
-UPDATE cajas
+UPDATE cajas AS c
         JOIN
     (SELECT 
         NUMREFERENCIA
     FROM
         cajas
     WHERE
-        VALOR > @valor_medio) AS c2 ON cajas.NUMREFERENCIA = c2.NUMREFERENCIA 
+        VALOR > @valor_medio) AS c2 ON c.NUMREFERENCIA = c2.NUMREFERENCIA 
 SET 
     VALOR = VALOR * 0.8;
 
